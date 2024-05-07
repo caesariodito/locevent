@@ -54,11 +54,6 @@ struct ProspectView: View {
             .navigationBarTitleDisplayMode(.inline)
         }
         .searchable(text: $searchText, isPresented: $searchIsActive, prompt: "find events!")
-        .searchScopes($searchScope) {
-            ForEach(SearchScope.allCases, id: \.self) { scope in
-                Text(scope.rawValue.capitalized)
-            }
-        }
         .onAppear(perform: runSearch)
         .onSubmit(of: .search, runSearch)
         .onChange(of: searchScope) { runSearch() }
